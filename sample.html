@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<!-- css styles -->
+<style type="text/css">
+    html{
+        min-height: 100%;
+    }
+    body{
+        background: linear-gradient(#e0f7fa,#b2ebf2,#80deea,#4dd0e1,#26c6da,#00bcd4,#00acc1,#0097a7,#00838f);
+        background-repeat: no-repeat;
+    }
+    #head{
+        font-size: 24px;
+    }
+    #form1{
+        margin-left: 500px;
+        margin-top: 50px;
+        margin-right: 500px;
+        background-color: #26c6da;
+        font-size: 18px;
+        font-family: lucida sans;
+        font-style: italic;
+        padding-left: 40px;
+        padding-top: 10px;
+        padding-bottom: 30px;
+        border: 2px solid;
+        border-color: #039be5;
+        border-radius: 20px;
+    }
+    #inputNote{
+        height:200px;
+        width: 400px;
+        border: 2px solid;
+        border-color: #039be5;
+        background-color: #b2dfdb;
+        border-radius: 15px;
+        font-size: 16px;
+        font-family: lucida sans;
+        font-style: italic;
+    }
+    #inputNote::-webkit-input-placeholder{
+        color: #0097a7;
+        font-family: lucida sans;
+        font-size: 16px;
+        font-style: italic;
+    }
+    #but1{
+        padding-left: 20px;
+        border: 2px solid;
+        border-color: #039be5; 
+        color: black;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-family: lucida sans;
+        font-style: italic;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    #but1:hover{
+        background-color: transparent;
+        color: white;
+    }
+    #TextBoxContainer{
+        text-align: center;
+        margin-left: 10px;
+        margin-top: 50px;
+        margin-right: 40px;
+        background-color: transparent;
+        font-size: 18px;
+        font-family: lucida sans;
+        font-style: italic;
+        padding-left: 40px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    #TextBoxContainer:nth-child(4n+1){
+        clear: left;
+    }
+    #textNote{
+        height:200px;
+        width: 200px;
+        border: 2px solid;
+        border-color: #039be5;
+        background-color: #b2dfdb;
+        border-radius: 15px;
+        font-size: 16px;
+        font-family: lucida sans;
+        font-style: italic;
+    }
+    #priority{
+        padding-left: 20px;
+        border: 2px solid;
+        border-color: #039be5; 
+        border-radius: 20px;
+        color: black;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-family: lucida sans;
+        font-style: italic;
+    }
+    #remBut{
+        border-radius: 10px;
+        padding-left: 20px;
+        border: 2px solid;
+        border-color: #039be5; 
+        color: black;
+        padding: 6px 10px;
+        font-size: 14px;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        cursor: pointer; 
+        position: relative;
+        bottom: 183px;
+        right: 37px;
+    }
+    #remBut:hover{
+        background-color: transparent;
+        border-color: transparent;
+        opacity: 50%;
+        color: white;
+    }
+    #clearBut{
+        padding-left: 20px;
+        border: 2px solid;
+        border-color: #039be5; 
+        color: black;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-family: lucida sans;
+        font-style: italic;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    #clearBut:hover{
+        background-color: transparent;
+        color: white;
+    }
+    #editBut{
+        border-radius: 10px;
+        padding-left: 20px;
+        border: 2px solid;
+        border-color: #039be5; 
+        color: black;
+        padding: 6px 10px;
+        font-size: 14px;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        cursor: pointer; 
+        position: relative;
+        bottom: 148px;
+        right: 70px;
+    }
+    #editBut:hover{
+        background-color: transparent;
+        border-color: transparent;
+        opacity: 50%;
+        color: white;
+    }
+    #sortButton{
+        padding-left: 20px;
+        border: 2px solid;
+        border-color: #039be5; 
+        color: black;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-family: lucida sans;
+        font-style: italic;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    #sortButton:hover{
+        background-color: transparent;
+        color: white;
+    }
+</style>
+
+<!-- scripts from now -->
+<script type="text/javascript">
+function clearBox(){
+    document.getElementById("inputNote").value='';
+}
+function GetDynamicTextBox(value){
+    return  '<textarea id="textNote" cols="40" rows="7">' + value + '</textarea>' +
+            '<input type="button" id="remBut" value="X" onclick = "RemoveTextBox(this)" />' +
+            '<input type="button" id="editBut" value="E" onclick="" />'
+}
+function AddTextBox() {
+    var x = document.getElementById("inputNote").value;
+    var div = document.createElement('DIV');
+    div.innerHTML = GetDynamicTextBox(x);
+    div.style.display = "inline";
+    div.style.margin = "20px";
+    document.getElementById("TextBoxContainer").appendChild(div);
+    document.getElementById("inputNote").value="";
+}
+ 
+function RemoveTextBox(div) {
+    document.getElementById("TextBoxContainer").removeChild(div.parentNode);
+}
+function sortNotes(){}
+</script>
+<!-- the body -->
+
+<body>
+<form id="form1">
+    <strong><p>Note Creator:</p></strong>    
+    Enter the note here:<br><br>
+    <textarea id="inputNote" cols="40" rows="7" placeholder="Enter the note here..."></textarea>
+    <input type="button" id="but1" value="add" onclick="AddTextBox()" >
+    <input type="button" id="clearBut" value="clear" onclick="clearBox()">
+    
+    <select id="priority">
+        <option value="3">High</option>
+        <option value="2" selected>Medium</option>
+        <option value="1">Low</option>
+    </select>
+    <input type="button" id="sortButton" value="Sort" onclick="sortNotes()">
+</form>
+<div id="TextBoxContainer">
+    <!--Textboxes will be added here -->
+</div>
+<br>
+</body>
+</html>
